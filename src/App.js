@@ -25,7 +25,7 @@ class App extends React.Component {
     let cityInfo = await axios.get(url);
     console.log(cityInfo.data);
     this.setState({
-      cityData: cityInfo.data
+      cityData: cityInfo.data[0],
     })
     
   }
@@ -42,7 +42,9 @@ class App extends React.Component {
           <button>Explore!</button>
         </form>
         <Card>
-          <Card.Text>{this.state.cityData.lat}</Card.Text>
+          <Card.Text>City: {this.state.cityData.display_name}</Card.Text>
+          <Card.Text>Latitude: {this.state.cityData.lat}</Card.Text>
+          <Card.Text>Longitude: {this.state.cityData.lon}</Card.Text>
         </Card>
       </>
     )  
