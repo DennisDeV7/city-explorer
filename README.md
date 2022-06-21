@@ -22,7 +22,7 @@ This application is built using React and uses a Axios library to request data f
 
 ## Change Log
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
+06-20-2022 8:39pm EST - Initial app created and deployed on Netlify
 
 ## Credit and Collaborations
 
