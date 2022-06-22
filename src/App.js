@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import './App.css';
+import Weather from './Weather';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class App extends React.Component {
       city: '',
       cityData: {},
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      cityWeatherData: [],
     };
   }
 
@@ -40,6 +42,20 @@ class App extends React.Component {
         errorMessage: `An Error occurred: ${error.response.status}`
       })
     }
+    this.handleGetWeather();
+  }
+
+  handleGetWeather = async () => {
+    let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`
+    try{
+      let weatherData = await axios.get(url)
+      console.log(weatherData.data);
+      this.setState({
+        cityWeatherData: weatherData.data,
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -60,6 +76,9 @@ class App extends React.Component {
           <Card.Text>Longitude: {this.state.cityData.lon}</Card.Text>
           <Card.Img src={this.state.cityMap}/>
         </Card>}
+        <Weather
+          cityWeather={this.state.cityWeatherData}
+        />
       </>
     )  
   };
