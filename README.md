@@ -19,6 +19,8 @@ In order to start the project on your own follow these steps:
 This application is built using React and uses a Axios library to request data from LocationIQ API.
 
 ![Architecture Diagram](data_flow.png)
+![Architecture Diagram](city_explorer_flow_lab07.png)
+![Architecture Diagram](lab08_flow.png)
 
 ## Change Log
 
