@@ -22,6 +22,7 @@ This application is built using React and uses a Axios library to request data f
 ![Architecture Diagram](city_explorer_flow_lab07.png)
 ![Architecture Diagram](lab08_flow.png)
 ![Architecture Diagram](city_explorer_dataflow2.png)
+![Architecture Diagram](city_explorer_dataflow3.png)
 
 ## Change Log
 
