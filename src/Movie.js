@@ -11,15 +11,17 @@ class Movie extends React.Component{
           Overview: {info.overview}     
           Average Votes: {info.average_votes}
           Total Votes: {info.total_votes}
-          Image: {info.image_url}
           Popularity: {info.popularity}
-          Released: {info.released_on}    
+          Released: {info.released_on}
+          <Card.Img
+            src= {`https://image.tmdb.org/t/p/w500${info.image_url}`}
+          />
         </Card.Text>
       )
     })
 
     return (
-      <Card>
+      <Card>              
         {movieInfo}
       </Card>
     )
