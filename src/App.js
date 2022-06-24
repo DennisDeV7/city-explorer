@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import './App.css';
 import Weather from './Weather';
+import Movie from './Movie';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends React.Component {
       error: false,
       errorMessage: '',
       cityWeatherData: [],
+      cityMovieInfo: []
     };
   }
 
@@ -43,15 +45,28 @@ class App extends React.Component {
       })
     }
     this.handleGetWeather();
+    this.handleGetMovies();
   }
 
   handleGetWeather = async () => {
-    let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`
+    let url = (`${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`)
     try{
       let weatherData = await axios.get(url)
       console.log(weatherData.data);
       this.setState({
         cityWeatherData: weatherData.data,
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  handleGetMovies = async () => {
+    let url = (`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`)
+    try {
+      let movieData = await axios.get(url);
+      this.setState({
+        cityMovieInfo: movieData.data
       })
     } catch (error) {
       console.log(error);
@@ -78,6 +93,9 @@ class App extends React.Component {
         </Card>}
         <Weather
           cityWeather={this.state.cityWeatherData}
+        />
+        <Movie
+          cityMovie={this.state.cityMovieInfo}
         />
       </>
     )  
